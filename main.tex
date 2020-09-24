@@ -77,30 +77,77 @@
 %
 \vspace{0.5cm}
 
+\setlength{\columnsep}{10pt}%
 \section{Introdução}
 
-Em determinados casos, é necessário produzir um campo magnético uniforme de baixa intensidade em um volume relativamente grande. Para tal fim, é, em geral, utilizado o equipamento desenvolvido por Hermann Ludwig Ferdinand von Helmholtz (1821-1894), denominado atualmente por \textbf{bobina de Helmholtz}. Esse aparelho consiste de duas bobinas coaxiais circulares separadas por uma distância escolhida cada uma contendo um número $N$ de espiras de raio $R$ com correntes fluindo no mesmo sentido. Veja figura 1.
+Em determinados casos, é necessário produzir um campo magnético uniforme de baixa intensidade em um volume relativamente grande. Para tal fim, é, em geral, utilizado o equipamento desenvolvido por Hermann Ludwig Ferdinand von Helmholtz (1821-1894), denominado atualmente por \textbf{bobina de Helmholtz}. Esse aparelho consiste de duas bobinas coaxiais circulares separadas por uma distância escolhida cada uma contendo um número $N$ de espiras de raio $R$ com correntes fluindo no mesmo sentido. Veja figura \ref{helmholtz}.
 
-\setlength{\columnsep}{10pt}%
-\begin{wrapfigure}{r}{0.4\textwidth}
+\begin{wrapfigure}[14]{r}{0.4\textwidth}
     \centering
-    \includesvg[width=7.4cm]{SpireCourant.svg}
-    \caption{Caption}
-    \label{}
+    \includegraphics[width=7cm]{./Imagens/Helmholtz.png}
+    \caption{Esquematização de uma bobina de Helmholtz. }
+    \label{helmholtz}
 \end{wrapfigure}
 
 As aplicações da bobina de Helmholtz são várias, por exemplo: determinação das componentes vertical e horizontal do campo magnético terrestre, bem como sua anulação em determinado volume; calibração de medidores de campo magnético de baixa frequência; estudo dos efeitos de campos magnéticos em componentes ou equipamentos eletrônicos; medidas de susceptibilidade magnética; calibração de equipamentos de navegação; estudo de efeitos biomagnéticos; ajuste de tubos de raios catódicos; estudo da performance de tubos de fotomultiplicadoras em campos magnéticos; medidas de magnetorresistência; desmagnetização de pequenas peças de materiais ferromagnéticos usados na ciência de naves espaciais. Nesse experimento, ela foi usada para a determinação da carga específica do elétron.
 
-
-
-Para entender o funcionamento de uma bobina de Helmholtz, deve-se lembrar que o campo magnético formado por uma bobina circular é dado por
+Para entender o funcionamento de uma bobina de Helmholtz, deve-se lembrar que o campo magnético formado por uma bobina circular é dado por:
 
 \begin{equation}
+    \label{biotsavartequation}
     d \vec B =  \frac{\mu _0 I}{4 \pi} \frac{d \vec l \times \vec \rho} {\rho ^3}
 \end{equation}
-onde $\mu _0$ é permeabilidade magnética do vácuo, $\vec \rho$ é o vetor que vai do elemento condutor $d \vec l$ até ponto de de medida $\vec B$, e $d \vec B$ é perpendicular ao vetores $\vec \rho$ e $d \vec l$. Veja a figura 2.
+\begin{wrapfigure}[15]{r}{0.4\textwidth}
+    \centering
+    \includesvg[width=7.4cm]{./Imagens/SpireCourant.svg}
+    \caption{Esquema demonstrando a direção e sentido dos vetores presentes na Lei de Biot-Savart (eq. \ref{biotsavartequation}). }
+    \label{biotsvartimage}
+\end{wrapfigure}
+onde $\mu _0$ é permeabilidade magnética do vácuo, $\vec \rho$ é o vetor que vai do elemento condutor $d \vec l$ até ponto de de medida $\vec B$, e $d \vec B$ é perpendicular ao vetores $\vec \rho$ e $d \vec l$. Veja a figura \ref{biotsvartimage}.
 
+Como o vetor $d \vec l$ é perpendicular aos vetores $\vec \rho$ e $d \vec B$ e ainda perpendicular ao plano da figura, enquanto os outros dois vetores estão no plano da figura, a equação \ref{biotsavartequation} pode ser reescrita como:
 
+\begin{equation}
+    dB = \frac{\mu _0 I}{4 \pi} dl = \frac{I}{4 \pi} \frac{\mu _0 dl}{R^2 +z^2}
+\end{equation}
+
+sendo $z$ a distância do centro da espira ao ponto onde estamos calculando o campo. Como mostrado na figura, $dB$ pode ser dividido em duas componentes, uma radial $dB$ e uma axial $dB _z$ . Para qualquer elemento $dl$ que escolhermos na espira a componente $dB _z$ do campo terá sempre a mesma direção, podendo, portanto serem somadas, já as componentes $dB _r$ se anulam aos pares. Sendo assim o campo na direção radial é nulo, ou seja, $\mathbf{B _r = 0}$ e o campo ao longo da direção $z$ (axial) é dado por:
+
+\begin{equation}
+    \label{bz}
+    B _z = \frac{\mu _0 I}{2}\frac{R^2}{(R^2 + z^2)^{\frac{3}{2}}} =  \frac{\mu _0 I}{2R}\frac{1}{(1 + (z/R)^2)^{\frac{3}{2}}}
+\end{equation}
+
+O campo magnético de uma bobina circular de $N$ espiras é então obtido multiplicando-se o número de espiras pela equação (\ref{bz}). Dessa forma, o campo ao longo do eixo das duas bobinas idênticas a uma distância a do centro das bobinas é:
+
+\begin{equation}
+    B(z,r=0) =  \frac{\mu _0 I N}{2R} \left [ \frac{1}{(1 + A^2)^{\frac{3}{2}}} + \frac{1}{(1 + A'^2)^{\frac{3}{2}}} \right ]
+\end{equation}
+Com
+\begin{equation*}
+    A = \frac{z-a/2}{R} \qquad e \qquad A' = \frac{z+a/2}{R}     
+\end{equation*}
+
+Quando  $z = 0$, o campo magnético tem um valor máximo para $a < R$ e mínimo para $a > R$. A dependência de $B$ com a posição ao longo do eixo axial das bobinas é virtualmente uniforme para o intervalo $\frac{-R}{2} < z < \frac{R}{2}$, quando $a = 0$. O campo $B$ no ponto médio entre as bobinas quando a separação a entre elas for igual ao raio $R$ é:
+
+\begin{equation}
+    B(0,0) = \frac{\mu _0 I N }{2R} \frac{2}{(5/4)^{\frac{3}{2}}} = 0,716 \mu _0 N \frac{I}{R}
+\end{equation}
+onde escolhemos como origem do sistema de coordenadas o ponto médio entre as bobinas sobre o eixo axial, para uma bobina com N = 154 espiras, raio R = 20 cm e corrente I = 4,0 A, o valor do campo B é de:
+
+\begin{equation}
+    B(0,0) = 2,77 \ mT
+\end{equation}
+
+Em 1897, Joseoh John Thomson(1856-1940) calculou a relação entre a carga elétrica e a massa do elétron, usando como aparato a bobina de Helmholtz. Esses experimento lhe valeu o Prêmio Nobel da Física, em 1906. Para isso, Thomson usou uma ideia simples: se um portador de carga elétrica estiver se movendo em um campo magnético perpendicular à sua velocidade, então o portador de carga sofrerá uma deflexão em sua trajetória.
+
+A força magnética $\vec F$  que age sobre um portador de carga que se movimenta com velocidade $\vec v$ num campo magnético $\vec B$ é dada pela relação vetorial apresentado abaixo:
+
+\begin{equation}
+    \vec F  = q \cdot ( \vec v \times \vec B)
+\end{equation}
+
+Se o feixe de elétrons é perpendicular ao campo magnético gerado pelas bobinas, então a Força de Lorentz apresentado acima se reduz à da equação a seguir, que também mostra como fica estabelecida a velocidade do portador de carga quando a Força Magnética atua como Força Centrípeta no feixe de elétrons:
 
 \section{Descrição experimental}
 
